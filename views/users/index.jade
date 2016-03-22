@@ -1,0 +1,9 @@
+extends ../layout.jade
+
+block title
+  title Users Index
+
+block content
+  each user in users
+    a(href='/users/#{user.id}')
+      h1= user.username
