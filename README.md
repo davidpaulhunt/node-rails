@@ -64,3 +64,8 @@ class Foo extends Base {
 
 module.exports = Foo;
 ```
+
+# Feedback
+If you have ideas of how to make the project, especially the Base Model and Controller, or even RequireParams and ValidationError, more like Rails, please leave a comment, open an issue, or email me at hello@dph.lol
+
+Thanks!
