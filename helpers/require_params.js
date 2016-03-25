@@ -3,8 +3,8 @@
 class RequireParams {
   constructor(params) {
     this.params = params;
-    console.log(this.params);
   }
+
   require(key) {
     if (!this.params || !this.params[key]) {
       throw new Error(`Missing param: ${key}`);
@@ -14,6 +14,7 @@ class RequireParams {
 
     return this;
   }
+
   permit() {
     const attrs = {};
 

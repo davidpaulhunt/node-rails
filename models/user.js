@@ -2,24 +2,30 @@
 
 const bookshelf = require('../services/bookshelf');
 const Checkit = require('checkit');
+const Base = require('./base_model');
 
-const User = module.exports = bookshelf.Model.extend({
-  tableName: 'users',
-  className: 'User',
-  hasTimestamps: ['created_at', 'updated_at'],
-  initialize: function initialize(attrs, opts) {
-    console.log(arguments);
-    this.on('saving', this.validateSave);
-  },
-  validateSave: function validateSave() {
+class User extends Base {
+  static tableName() {
+    return 'users';
+  }
+
+  static className() {
+    return 'User';
+  }
+
+  constructor(attrs) {
+    super(attrs);
+  }
+
+  validateSave() {
     return new Checkit({
       username: 'required',
     }).run(this.attributes);
-  },
-  toAPI: function toAPI() {
-    return {
-      id: this.get('id'),
-      username: this.get('username'),
-    };
-  },
-});
+  }
+
+  toAPI() {
+    return this.attributes;
+  }
+}
+
+module.exports = User;

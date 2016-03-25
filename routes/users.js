@@ -15,7 +15,10 @@ router.get('/', (req, res, next) => {
 router.post('/', urlencodedParser, (req, res, next) => {
   return Controller.create({ user: req.body }).then(user => {
     res.redirect(`users/${user.id}`);
-  }).catch(console.error);
+  }).catch((e) => {
+    console.error(e);
+    res.status(500).send(e.message);
+  });
 });
 
 router.get('/new', (req, res, next) => {
